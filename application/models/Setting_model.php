@@ -49,4 +49,28 @@ class setting_model extends CI_Model{
         }
         return $deposit;
     }
+    
+    public function addCollege($college_data){
+    	extract($college_data);
+    	$query = "INSERT INTO college(college_name) VALUES(?)";
+    	$execute = $this->db->query($query, array($college_name));
+    	$id = $this->db->insert_id();
+    	if($id>0){
+    		return TRUE;
+    	} else{
+    		return FALSE;
+    	}
+    }
+    
+    public function addUniversity($university_data){
+    	extract($university_data);
+    	$query = "INSERT INTO university(university_name) VALUES(?)";
+    	$execute = $this->db->query($query, array($university_name));
+    	$id = $this->db->insert_id();
+    	if($id>0){
+    		return TRUE;
+    	} else{
+    		return FALSE;
+    	}
+    }
 }

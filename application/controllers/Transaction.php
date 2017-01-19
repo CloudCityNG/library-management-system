@@ -14,6 +14,8 @@ class Transaction extends CI_Controller{
     public function __construct(){
         parent:: __construct();
         $this->load->model('transaction_model');
+        $this->load->library('session');
+        $this->load->helper('url');
     }
 
     public function getDetails(){
@@ -76,6 +78,8 @@ class Transaction extends CI_Controller{
     }
 
     public function issueBook(){
+    	if(!$this->session->userdata('is_logged'))
+    		redirect('/');
         if(isset($_POST['issueBook'])){
             $this->load->library("form_validation");
             $this->form_validation->set_rules('bookId','Book ID','required|numeric|trim');
@@ -192,12 +196,16 @@ class Transaction extends CI_Controller{
     }
     
     public function returnBook(){
+    	if(!$this->session->userdata('is_logged'))
+    		redirect('/');
         $this->load->view('template/header');
         $this->load->view('transaction/returnBook');
         $this->load->view('template/footer');
     }
     
     public function payFine(){
+    	if(!$this->session->userdata('is_logged'))
+    		redirect('/');
         $book_type = $_GET['book_type'];
         $book_id = $_GET['book_id'];
         $member_id = $_GET['member_id'];
@@ -256,7 +264,8 @@ class Transaction extends CI_Controller{
     }
 
     public function transactionHistory(){
-
+    	if(!$this->session->userdata('is_logged'))
+    		redirect('/');
             $this->load->library('pagination');
             $this->load->library('table');
             $config['base_url'] = PATH."transaction/transactionHistory";

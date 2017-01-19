@@ -22,6 +22,8 @@ class searchdatabase_control extends CI_Controller{
     }
 
     public function find_members(){
+    	if(!$this->session->userdata('is_logged'))
+    		redirect('/');
     	$data['college'] = $this->member_model->college();
     	$data['branch'] = $this->member_model->branch();
     	$data['university'] = $this->member_model->university();
@@ -33,6 +35,8 @@ class searchdatabase_control extends CI_Controller{
     }
 
     public function find_id(){
+    	if(!$this->session->userdata('is_logged'))
+    		redirect('/');
         $this->load->library("form_validation");
         if(isset($_POST['id_search'])){
             $this->form_validation->set_rules('member_id','Member ID','required|numeric');
@@ -88,6 +92,8 @@ class searchdatabase_control extends CI_Controller{
     }
 
     public function advance_search(){
+    	if(!$this->session->userdata('is_logged'))
+    		redirect('/');
         $this->load->library("form_validation");
 		$this->load->library('pagination');
 		$this->load->library('table');
@@ -189,6 +195,8 @@ class searchdatabase_control extends CI_Controller{
     }
 
 	public function find_book(){
+		if(!$this->session->userdata('is_logged'))
+			redirect('/');
 		$data['branch'] = $this->book_model->get_branch();
 		$data['topic'] = $this->book_model->get_topic();
 		$data['author'] = $this->book_model->get_author();
@@ -200,6 +208,8 @@ class searchdatabase_control extends CI_Controller{
 	}
 
 	public function book_search(){
+		if(!$this->session->userdata('is_logged'))
+			redirect('/');
 		$this->load->library("form_validation");
 		$this->load->library('pagination');
 		$this->load->library('table');

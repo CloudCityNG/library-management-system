@@ -14,10 +14,13 @@ class Book extends CI_Controller {
 		parent:: __construct();
 		$this->load->model('book_model');
 		$this->load->model('searchdatabase_model');
-		//$this->load->library('uri');
+		$this->load->library('session');
+		$this->load->helper('url');
     }
 
     public function index(){
+    	if(!$this->session->userdata('is_logged'))
+    		redirect('/');
 		$this->add_book();
     }
 
@@ -25,6 +28,8 @@ class Book extends CI_Controller {
 	 *
 	 */
 	public function add_book(){
+		if(!$this->session->userdata('is_logged'))
+			redirect('/');
 		$this->load->library("form_validation");
 		if(isset($_POST['submit'])){
 			$this->form_validation->set_rules('branch','Branch','required');
@@ -98,6 +103,8 @@ class Book extends CI_Controller {
 	}
 
 	public function add_branch(){
+		if(!$this->session->userdata('is_logged'))
+			redirect('/');
 		$this->load->library("form_validation");
 		if(isset($_POST['submit'])){
 			$this->form_validation->set_rules('newbranch','Branch','required|trim');
@@ -129,6 +136,8 @@ class Book extends CI_Controller {
 	}
 
 	public function add_topic(){
+		if(!$this->session->userdata('is_logged'))
+			redirect('/');
 		$this->load->library("form_validation");
 		if(isset($_POST['submit'])){
 			$this->form_validation->set_rules('newbranch','Branch','required|trim');
@@ -164,6 +173,8 @@ class Book extends CI_Controller {
 	}
 
 	public function add_publication(){
+		if(!$this->session->userdata('is_logged'))
+			redirect('/');
 		$this->load->library("form_validation");
 		if(isset($_POST['submit'])){
 			$this->form_validation->set_rules('newpublication','Publication','required|trim');
@@ -198,6 +209,8 @@ class Book extends CI_Controller {
 	 *
 	 */
 	public function add_author(){
+		if(!$this->session->userdata('is_logged'))
+			redirect('/');
 		$this->load->library("form_validation");
 		if(isset($_POST['submit'])){
 			$this->form_validation->set_rules('newbranch','Branch','required|trim');
@@ -237,6 +250,8 @@ class Book extends CI_Controller {
 	}
 
 	public function view_book(){
+		if(!$this->session->userdata('is_logged'))
+			redirect('/');
 		$this->load->library('pagination');
 		$this->load->library('table');
 		$config['base_url'] = "http://localhost/lms/index.php/book/view_book";
@@ -253,6 +268,8 @@ class Book extends CI_Controller {
 	}
 
 	public function add_novel(){
+		if(!$this->session->userdata('is_logged'))
+			redirect('/');
 		$this->load->library("form_validation");
 		if(isset($_POST['submit'])){
 			$this->form_validation->set_rules('author','Author','required');
@@ -307,6 +324,8 @@ class Book extends CI_Controller {
 	}
 
 	public function add_magazine(){
+		if(!$this->session->userdata('is_logged'))
+			redirect('/');
 		$this->load->library("form_validation");
 		if(isset($_POST['submit'])){
 			$this->form_validation->set_rules('author','Author','required');

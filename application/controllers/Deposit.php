@@ -14,10 +14,14 @@
         }   
         
         public function index(){
-                //$this->add_member();       
+        	if(!$this->session->userdata('is_logged'))
+        		redirect('/'); 
+        	$this->addDeposit();
         }
 
         public function addDeposit(){
+        	if(!$this->session->userdata('is_logged'))
+        		redirect('/');
             $this->load->library("form_validation");
             if(isset($_POST['submitDeposit'])){
                 $this->form_validation->set_rules('amount','Amount','required|trim');
@@ -73,6 +77,8 @@
 
 
         public function viewActiveDeposit(){
+        	if(!$this->session->userdata('is_logged'))
+        		redirect('/');
             $this->load->library('pagination');
             $this->load->library('table');
             $config['base_url'] = PATH."deposit/viewActiveDeposit";
@@ -87,6 +93,8 @@
         }
 
         public function viewReturnedDeposit(){
+        	if(!$this->session->userdata('is_logged'))
+        		redirect('/');
             $this->load->library('pagination');
             $this->load->library('table');
             $config['base_url'] = PATH."deposit/viewReturnedDeposit";

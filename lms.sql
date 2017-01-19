@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 11, 2016 at 09:22 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- Host: localhost
+-- Generation Time: Jan 19, 2017 at 02:45 PM
+-- Server version: 5.5.53-0ubuntu0.14.04.1
+-- PHP Version: 7.0.12-1+deb.sury.org~trusty+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -33,21 +33,6 @@ CREATE TABLE `author` (
   `author_id` varchar(4) NOT NULL COMMENT 'author id based on branch id ',
   `author_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `author`
---
-
-INSERT INTO `author` (`aid`, `topic_id`, `branch_id`, `author_id`, `author_name`) VALUES
-(1, '01', '01', '0001', 'hjavsi'),
-(2, '01', '01', '0002', 'jhsv'),
-(3, '01', '01', '0002', 'umang'),
-(4, '03', '02', '0003', 'nilesh'),
-(5, '01', '01', '0004', 'nilesh'),
-(6, '02', '03', '0001', 'iwdjbfw'),
-(7, '03', '02', '0002', 'kjbo'),
-(8, '08', '02', '0001', 'hello'),
-(9, '10', '01', '0001', 'kumbhojkar');
 
 -- --------------------------------------------------------
 
@@ -94,14 +79,6 @@ CREATE TABLE `book` (
   `purchase_date` varchar(15) NOT NULL COMMENT 'describes purchasing date of book'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `book`
---
-
-INSERT INTO `book` (`bk_id`, `branch_id`, `topic_id`, `author_id`, `book_id`, `publication_id`, `copy`, `book_name`, `book_type`, `cost`, `purchase_date`) VALUES
-(1, '01', '02', '0001', '0102000101', 1, 1, 'ok', 'Educational', '1111', '2015-10-13'),
-(2, '01', '02', '0001', '0102000102', 1, 2, 'ok', 'Educational', '130', '2015-12-30');
-
 -- --------------------------------------------------------
 
 --
@@ -132,37 +109,6 @@ CREATE TABLE `branch` (
   `branch_name` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `branch`
---
-
-INSERT INTO `branch` (`b_id`, `branch_id`, `branch_name`) VALUES
-(1, '01', 'Computer Engineering'),
-(2, '02', 'Electrical Engineering'),
-(3, '03', 'Mechanical Engineering'),
-(4, '04', 'Electrical Engineering'),
-(5, '05', 'Civil Engineering'),
-(6, '06', 'Instrumental Engineering'),
-(7, '07', 'Electronics and Telecommunications'),
-(8, '01', 'Science'),
-(9, '09', 'commerce'),
-(10, '10', 'arts'),
-(11, '11', 'eco');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `co-author`
---
-
-CREATE TABLE `co-author` (
-  `ca_id` smallint(6) NOT NULL COMMENT 'auto incrementing co-author id',
-  `topic_id` varchar(2) NOT NULL COMMENT 'topic id foreign key',
-  `branch_id` varchar(2) NOT NULL COMMENT 'branch id foreign key',
-  `co-author_id` varchar(4) NOT NULL COMMENT 'co-author id based on branch id',
-  `co-author_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
 
 --
@@ -174,16 +120,6 @@ CREATE TABLE `college` (
   `college_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `college`
---
-
-INSERT INTO `college` (`college_id`, `college_name`) VALUES
-(2, 'K.J Somaiya, Vidyavihar'),
-(4, 'TSEC, Bandra'),
-(3, 'VESIT, Chembur'),
-(1, 'VJTI, Matunga');
-
 -- --------------------------------------------------------
 
 --
@@ -194,6 +130,20 @@ CREATE TABLE `copy` (
   `c_id` tinyint(4) NOT NULL,
   `copy_id` varchar(2) NOT NULL,
   `copy_value` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `co_author`
+--
+
+CREATE TABLE `co_author` (
+  `ca_id` smallint(6) NOT NULL COMMENT 'auto incrementing co-author id',
+  `topic_id` varchar(2) NOT NULL COMMENT 'topic id foreign key',
+  `branch_id` varchar(2) NOT NULL COMMENT 'branch id foreign key',
+  `co-author_id` varchar(4) NOT NULL COMMENT 'co-author id based on branch id',
+  `co-author_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -213,17 +163,6 @@ CREATE TABLE `deposit` (
   `return_date` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `deposit`
---
-
-INSERT INTO `deposit` (`deposit_id`, `member_id`, `date`, `amount`, `booklet`, `receipt`, `returned`, `return_date`) VALUES
-(2, 2, '12/09/2014', '650', '8648', 'ut89', 1, '2016-05-05'),
-(3, 42, '2016-04-30', '650', 'j', 'j', 0, NULL),
-(4, 21, '2015-12-30', '650', '23AS', '1131', 0, NULL),
-(5, 43, '2018-09-11', '1000', '123456', '123456', 0, NULL),
-(6, 44, '2016-09-20', '10000', '1234567', '123456789', 0, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -242,53 +181,6 @@ CREATE TABLE `fee` (
   `history` tinyint(4) DEFAULT NULL COMMENT '1=added in fee history on renewal'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `fee`
---
-
-INSERT INTO `fee` (`id`, `member_id`, `amount`, `start_date`, `end_date`, `period`, `booklet`, `receipt`, `history`) VALUES
-(1, 1, 450, '14-10-2015', '14-04-2016', 6, '2312', '2131', 1),
-(3, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321', 1),
-(4, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321', 1),
-(5, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321', 1),
-(6, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321', 1),
-(7, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321', 1),
-(8, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321', 1),
-(9, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321', 1),
-(10, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321', 1),
-(11, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321', 1),
-(12, 1, 450, '2014-12-31', '2014-12-31', 6, '2321', '2321', 1),
-(13, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(14, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(15, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(16, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(17, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(18, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(19, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(20, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(21, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(22, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(23, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(24, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(25, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(26, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(27, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(28, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(29, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(30, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(31, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(32, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(33, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(34, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(35, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(36, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(37, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(38, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(39, 1, 450, '2014-12-31', '70-01-01', 6, '2321', '2321', 1),
-(40, 1, 450, '2014-12-31', '15-06-30', 6, '2321', '2321', 1),
-(41, 1, 200, '2016-08-05', '16-10-04', 2, '123456', '123456', NULL),
-(42, 0, 200, '2016-08-05', '16-10-04', 2, '123456', '123456', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -306,18 +198,6 @@ CREATE TABLE `fee_history` (
   `receipt` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `fee_history`
---
-
-INSERT INTO `fee_history` (`id`, `member_id`, `amount`, `start_date`, `end_date`, `period`, `booklet`, `receipt`) VALUES
-(1, 1, 450, '14-10-2015', '14-04-2016', 6, '2312', '2131'),
-(1, 1, 450, '14-10-2015', '14-04-2016', 6, '2312', '2131'),
-(3, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321'),
-(1, 1, 450, '14-10-2015', '14-04-2016', 6, '2312', '2131'),
-(3, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321'),
-(4, 1, 450, '2014-12-31', '20146 month', 6, '2321', '2321');
-
 -- --------------------------------------------------------
 
 --
@@ -330,13 +210,6 @@ CREATE TABLE `fine_record` (
   `amt_paid` smallint(6) NOT NULL,
   `date` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `fine_record`
---
-
-INSERT INTO `fine_record` (`id`, `member_id`, `amt_paid`, `date`) VALUES
-(12, 1, 2, 'July 7, 2016, 3:52 pm');
 
 -- --------------------------------------------------------
 
@@ -354,13 +227,6 @@ CREATE TABLE `magazine` (
   `purchase_date` date NOT NULL,
   `book_type` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `magazine`
---
-
-INSERT INTO `magazine` (`id`, `magazine_id`, `magazine_name`, `publication_id`, `author_id`, `cost`, `purchase_date`, `book_type`) VALUES
-(1, '20001', 'ijb', 1, '0002', '120', '2014-12-31', 'Magazine');
 
 -- --------------------------------------------------------
 
@@ -398,29 +264,6 @@ CREATE TABLE `member` (
   `branch` tinyint(4) NOT NULL COMMENT 'refers to b_id in branch table'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `member`
---
-
-INSERT INTO `member` (`member_id`, `first_name`, `middle_name`, `last_name`, `date_of_birth`, `email`, `contact_1`, `contact_2`, `address_building`, `address_street`, `address_city`, `address_state`, `address_pin`, `date_of_joining`, `type`, `college`, `company`, `course`, `current_year`, `gender`, `blood_group`, `university`, `year_of_passing`, `designation`, `domain_of_work`, `status`, `branch`) VALUES
-(1, 'Nilesh', 'Chander', 'Thadani', '1994-07-19', 'thadaninilesh@gmail.in', '09372111555', '', 'This is my address', 'qwerty', 'Ulhasnagar', 21, '421002', '2016-05-03 09:33:55', 'Student', 3, 'VSM', 'Degree', 4, 'Male', 3, 1, '2016-05', 'Volunteer', 'Web', 1, 1),
-(2, 'Nisha', 'Raju', 'Sajnani', '1995-07-09', 'sajnaninisha19@gmail.com', '9022414157', '', 'my building', 'my street', 'ulhasnagar', 21, '421003', '2016-05-05 17:47:05', 'Student', 3, 'VSM', 'Degree', 4, 'Male', 3, 1, '2015-12', '', '', 0, 5),
-(3, 'Viraj', 'A', 'Khatavkar', '2015-12-31', 'viraj.2438@gmail.com', '9876543212', '', 'qwerty', 'wertyghj', 'dombivli', 21, '432123', '2016-05-02 09:33:58', 'Student', 3, '', 'Degree', 0, 'Male', 1, 1, '2014-05', '', '', 1, 1),
-(4, 'a', 'b', 'c', '2015-12-31', 'qwe@dvs.com', '1234567890', '', 'asdfgy', 'scvbh', 'scvgh', 11, '987654', '2016-05-02 09:13:55', 'Working', 4, 'shjd', 'Diploma', 1, 'Male', 1, 2, '2015-12', 'iv', 'ihv', 0, 1),
-(5, 'hv', 'v', 'hv', '2013-12-31', 'hv@jh.ikbj', '1987654333', '', 'hfu', 'uhvv', 'hvh', 1, '654321', '2016-05-02 09:05:58', 'Student', 2, '', 'Degree', 0, 'Male', 3, 1, '2015-12', '', '', 0, 5),
-(6, 'nishu', 'm', 'sajnani', '2004-07-15', 'nisha.sajnani@ves.ac.in', '9876543211', '', 'hjvib', 'jhvihv', 'Ulhasnagar', 1, '421002', '2015-06-18 09:41:17', 'Student', 2, '', 'Degree', 2, 'Male', 1, 1, '2019-02', '', '', 1, 1),
-(7, 'nisha', 'kjbJKB', 'jb', '2014-09-05', 'ob@iv.com', '1234512123', '', 'ojbgjbi', 'uibiubib', 'Ulhasnagar', 21, '421002', '2015-06-23 18:09:32', 'Student', 2, 'VSM', 'Degree', 0, 'Male', 1, 1, '2014-12', '', '', 1, 2),
-(8, 'ihv', 'hvj', 'ihjvij', '2008-05-31', 'jhb@kjb.in', '1234567890', '', 'yfchjb', 'ibib', 'iubibjkb', 1, '432123', '2015-06-23 18:11:06', 'Working', 2, '', 'Degree', 0, 'Female', 2, 1, '2014-12', '', '', 1, 2),
-(9, 'Nilesh', 'dbobdbo', 'obob', '2014-11-30', 'kjbd@lb.com', '1234567890', '', 'kjbb', 'ojbob', 'Ulhasnagar', 21, '421002', '2015-06-23 18:29:52', 'Student', 2, '', 'Degree', 2, 'Male', 1, 1, '2014-12', '', '', 1, 1),
-(10, 'lknp', 'onion', 'oknon', '2003-11-30', 'linon@onb.com', '1234567890', '', 'khjbvib', 'ibibib', 'ibib', 1, '123456', '2015-06-24 08:41:34', 'Working', 4, '', 'Degree', 1, 'Female', 1, 2, '2014-12', '', '', 1, 2),
-(11, 'hema', 'ijb', 'ivb', '2002-12-31', 'dfv@oujb.com', '1234567891', '', 'sdf', 'dfv', 'Ulhasnagar', 21, '421002', '2016-05-02 09:06:53', 'Student', 2, 'VSM', 'Degree', 1, 'Female', 1, 1, '2015-12', '', '', 0, 1),
-(12, 'nilesh', 'chander', 'thadani', '2014-12-31', 'milesh@gmail.com', '9372111555', '', 'snow white', 'aman talkies', 'Ulhasnagar', 21, '421003', '2015-06-29 05:59:18', 'Student', 3, 'VSM', 'Degree', 4, 'Male', 3, 1, '2016-06', '', '', 1, 1),
-(14, 'Umang', 'Chander', 'Thadani', '2016-04-10', 'umang@gmail.com', '8087041707', '', 'Snow White Society', 'Near Aman Talkies', 'Ulhasnagar', 1, '421002', '2016-04-23 08:32:19', 'Student', 2, '', 'Degree', 2, 'Male', 2, 1, '2016-12', '', '', 1, 1),
-(21, 'Chander', 'G', 'Thadani', '1968-10-31', 'chander@gmail.com', '123456789', '', 'trfu uihin ', ' ini ij', 'kjbkjbijb', 1, '421001', '2016-05-03 05:30:56', 'Working', 2, '', 'Degree', 3, 'Male', 1, 1, '2016-12', '', '', 1, 1),
-(42, 'iub', 'bi', 'bib', '1984-07-31', 'ub@ib.ci', '2345678', '', 'tfubkjbkji hij ijni', 'ihoihini jnij ', 'uhbiubu', 8, '345678', '2016-05-02 19:31:00', 'Working', 2, '', 'Degree', 3, 'Male', 1, 1, '2016-11', '', '', 1, 1),
-(43, 'madhukar', 'ss', 'f f', '1990-11-01', 'abc@gmail.com', '9820982098', '', 'de', 'dad', 'Dombivli', 21, '421202', '2016-08-11 07:11:53', 'Student', 3, '', 'Degree', 2, 'Male', 8, 1, '2018-02', '', '', 0, 1),
-(44, 'Pavankumar', 'M', 'Sakhare', '1996-11-07', 'abc123@gmail.com', '9876543210', '', 'abc', 'abc', 'Dombivli', 21, '421202', '2016-08-11 05:08:19', 'Student', 3, '', 'Degree', 3, 'Male', 1, 1, '2018-04', '', '', 1, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -436,13 +279,6 @@ CREATE TABLE `member_fine` (
   `updated_at` varchar(30) NOT NULL,
   `full_pay` tinyint(4) NOT NULL COMMENT '0=pending, 1=complete'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `member_fine`
---
-
-INSERT INTO `member_fine` (`id`, `member_id`, `transaction_id`, `total_fine`, `paid_fine`, `updated_at`, `full_pay`) VALUES
-(12, 1, 17, 4, 2, 'July 7, 2016, 3:52 pm', 0);
 
 -- --------------------------------------------------------
 
@@ -461,13 +297,6 @@ CREATE TABLE `novel` (
   `book_type` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `novel`
---
-
-INSERT INTO `novel` (`id`, `novel_id`, `novel_name`, `author_id`, `cost`, `purchase_date`, `publication_id`, `book_type`) VALUES
-(1, '10001', 'sdijfb', '0002', '1110', '2014-12-31', 1, 'Novel');
-
 -- --------------------------------------------------------
 
 --
@@ -479,16 +308,25 @@ CREATE TABLE `publication` (
   `publication_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `publication`
+-- Table structure for table `settings`
 --
 
-INSERT INTO `publication` (`p_id`, `publication_name`) VALUES
-(1, 'abc'),
-(2, 'xyz'),
-(3, 'nirali'),
-(4, 'techmax'),
-(5, 'technical');
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `value` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES
+(1, 'FEE', '1500'),
+(2, 'DEPOSIT', '205');
 
 -- --------------------------------------------------------
 
@@ -575,27 +413,6 @@ CREATE TABLE `topic` (
   `topic_name` varchar(30) NOT NULL COMMENT 'topic name'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `topic`
---
-
-INSERT INTO `topic` (`tid`, `topic_id`, `branch_id`, `topic_name`) VALUES
-(1, '01', '01', 'html'),
-(2, '02', '01', 'php'),
-(3, '03', '03', 'java'),
-(4, '04', '04', 'c++4'),
-(5, '01', '03', 'comps'),
-(6, '01', '01', 'it'),
-(7, '01', '01', 'it'),
-(8, '01', '01', 'it'),
-(9, '01', '01', 'it'),
-(10, '01', '01', 'it'),
-(11, '03', '03', 'isjbd'),
-(12, '08', '01', 'asdfgh'),
-(13, '04', '03', 'web'),
-(14, '02', '01', 'Web'),
-(15, '10', '01', 'C');
-
 -- --------------------------------------------------------
 
 --
@@ -613,29 +430,6 @@ CREATE TABLE `transaction_issue` (
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0=not returned | 1=returned'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `transaction_issue`
---
-
-INSERT INTO `transaction_issue` (`t_id`, `book_id`, `book_type`, `member_id`, `issue_date`, `return_date`, `returned_on`, `status`) VALUES
-(1, '20001', 1, '1', 'July 2, 2016, 6:34 pm', '16-07-2016', '', 1),
-(2, '10001', 2, '3', 'July 3, 2016, 7:00 pm', '09-07-2016', '', 1),
-(3, '0102000101', 0, '1', 'June 1, 2016, 10:00 pm', '02-06-2016', '0', 1),
-(4, '0102000102', 0, '1', 'July 4, 2016, 8:03 pm', '18-07-2016', '', 1),
-(5, '0102000101', 0, '1', 'July 4, 2016, 8:03 pm', '18-07-2016', '0', 1),
-(6, '20001', 1, '1', 'July 4, 2016, 8:21 pm', '18-07-2016', '', 1),
-(7, '20001', 1, '1', 'July 4, 2016, 8:22 pm', '18-07-2016', '', 1),
-(8, '20001', 1, '1', 'July 4, 2016, 8:24 pm', '18-07-2016', '', 1),
-(9, '20001', 1, '1', 'July 4, 2016, 8:26 pm', '18-07-2016', '', 1),
-(10, '20001', 1, '1', 'July 2, 2016, 8:26 pm', '05-07-2016', 'July 7, 2016, 3:52 pm', 1),
-(11, '0102000101', 0, '1', 'July 4, 2016, 8:27 pm', '18-07-2016', '0', 1),
-(12, '0102000101', 0, '1', 'July 7, 2016, 1:12 pm', '21-07-2016', 'July 7, 2016, 1:24 pm', 1),
-(13, '0102000101', 0, '43', 'July 4, 2016, 5:35 am', '09-08-2016', 'August 3, 2016, 3:02 am', 1),
-(14, '0102000102', 0, '42', 'August 11, 2016, 4:07 am', '25-08-2016', 'August 11, 2016, 4:53 am', 1),
-(22, '0102000102', 0, '42', 'August 11, 2016, 5:18 am', '25-08-2016', '0', 1),
-(23, '0102000101', 0, '44', 'August 11, 2016, 8:51 am', '18-08-2016', '0', 0),
-(24, '0102000102', 0, '42', 'August 11, 2016, 9:00 am', '25-08-2016', '0', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -647,14 +441,6 @@ CREATE TABLE `university` (
   `university_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `university`
---
-
-INSERT INTO `university` (`university_id`, `university_name`) VALUES
-(1, 'Mumbai University'),
-(2, 'Pune University');
-
 -- --------------------------------------------------------
 
 --
@@ -663,16 +449,21 @@ INSERT INTO `university` (`university_id`, `university_name`) VALUES
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `uname` varchar(100) DEFAULT NULL,
-  `pword` varchar(255) DEFAULT NULL
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `mobile` varchar(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `uname`, `pword`) VALUES
-(1, 'admin', '202cb962ac59075b964b07152d234b70');
+INSERT INTO `users` (`id`, `name`, `email`, `mobile`, `username`, `password`, `created_at`) VALUES
+(2, 'Nilesh Thadani', 'thadaninilesh@gmail.com', '9372111555', 'thadaninilesh', 'e0b7a311043ce8d5c24c3dee0ae23e36ad9342adf3f2d760922128cd55daefb2', '2017-01-16 16:38:17'),
+(3, 'VSM', 'admin@lms.com', '9323773777', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '2017-01-19 14:37:06');
 
 --
 -- Indexes for dumped tables
@@ -733,17 +524,6 @@ ALTER TABLE `branch`
   ADD KEY `branch_id` (`branch_id`);
 
 --
--- Indexes for table `co-author`
---
-ALTER TABLE `co-author`
-  ADD PRIMARY KEY (`ca_id`),
-  ADD UNIQUE KEY `ca_id` (`ca_id`),
-  ADD KEY `topic_id` (`topic_id`,`branch_id`),
-  ADD KEY `branch_id` (`branch_id`),
-  ADD KEY `co-author_name` (`co-author_name`),
-  ADD KEY `co-author_id` (`co-author_id`);
-
---
 -- Indexes for table `college`
 --
 ALTER TABLE `college`
@@ -756,6 +536,17 @@ ALTER TABLE `college`
 ALTER TABLE `copy`
   ADD PRIMARY KEY (`copy_id`),
   ADD UNIQUE KEY `c_id` (`c_id`);
+
+--
+-- Indexes for table `co_author`
+--
+ALTER TABLE `co_author`
+  ADD PRIMARY KEY (`ca_id`),
+  ADD UNIQUE KEY `ca_id` (`ca_id`),
+  ADD KEY `topic_id` (`topic_id`,`branch_id`),
+  ADD KEY `branch_id` (`branch_id`),
+  ADD KEY `co-author_name` (`co-author_name`),
+  ADD KEY `co-author_id` (`co-author_id`);
 
 --
 -- Indexes for table `deposit`
@@ -825,6 +616,12 @@ ALTER TABLE `publication`
   ADD KEY `p_id` (`p_id`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `state`
 --
 ALTER TABLE `state`
@@ -865,7 +662,10 @@ ALTER TABLE `university`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `mobile` (`mobile`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -875,7 +675,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `aid` smallint(6) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing author id', AUTO_INCREMENT=10;
+  MODIFY `aid` smallint(6) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing author id';
 --
 -- AUTO_INCREMENT for table `bloodgroup`
 --
@@ -885,7 +685,7 @@ ALTER TABLE `bloodgroup`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `bk_id` mediumint(9) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing bookid', AUTO_INCREMENT=3;
+  MODIFY `bk_id` mediumint(9) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing bookid';
 --
 -- AUTO_INCREMENT for table `bookold`
 --
@@ -895,62 +695,67 @@ ALTER TABLE `bookold`
 -- AUTO_INCREMENT for table `branch`
 --
 ALTER TABLE `branch`
-  MODIFY `b_id` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing branch id', AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT for table `co-author`
---
-ALTER TABLE `co-author`
-  MODIFY `ca_id` smallint(6) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing co-author id';
+  MODIFY `b_id` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing branch id';
 --
 -- AUTO_INCREMENT for table `college`
 --
 ALTER TABLE `college`
-  MODIFY `college_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `college_id` int(3) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `copy`
 --
 ALTER TABLE `copy`
   MODIFY `c_id` tinyint(4) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `co_author`
+--
+ALTER TABLE `co_author`
+  MODIFY `ca_id` smallint(6) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing co-author id';
+--
 -- AUTO_INCREMENT for table `deposit`
 --
 ALTER TABLE `deposit`
-  MODIFY `deposit_id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `deposit_id` mediumint(9) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `fee`
 --
 ALTER TABLE `fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `fine_record`
 --
 ALTER TABLE `fine_record`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `magazine`
 --
 ALTER TABLE `magazine`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `member_id` smallint(6) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `member_fine`
 --
 ALTER TABLE `member_fine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `novel`
 --
 ALTER TABLE `novel`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `publication`
 --
 ALTER TABLE `publication`
-  MODIFY `p_id` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT 'foreign key in book relation', AUTO_INCREMENT=6;
+  MODIFY `p_id` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT 'foreign key in book relation';
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `state`
 --
@@ -960,22 +765,22 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `topic`
 --
 ALTER TABLE `topic`
-  MODIFY `tid` smallint(6) NOT NULL AUTO_INCREMENT COMMENT 'autoincrementing id', AUTO_INCREMENT=16;
+  MODIFY `tid` smallint(6) NOT NULL AUTO_INCREMENT COMMENT 'autoincrementing id';
 --
 -- AUTO_INCREMENT for table `transaction_issue`
 --
 ALTER TABLE `transaction_issue`
-  MODIFY `t_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `t_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `university`
 --
 ALTER TABLE `university`
-  MODIFY `university_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `university_id` int(3) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
@@ -1007,9 +812,9 @@ ALTER TABLE `bookold`
   ADD CONSTRAINT `bookold_ibfk_5` FOREIGN KEY (`copy_id`) REFERENCES `copy` (`copy_id`);
 
 --
--- Constraints for table `co-author`
+-- Constraints for table `co_author`
 --
-ALTER TABLE `co-author`
+ALTER TABLE `co_author`
   ADD CONSTRAINT `co@002dauthor_ibfk_1` FOREIGN KEY (`ca_id`) REFERENCES `author` (`aid`),
   ADD CONSTRAINT `co@002dauthor_ibfk_2` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`topic_id`),
   ADD CONSTRAINT `co@002dauthor_ibfk_3` FOREIGN KEY (`co-author_id`) REFERENCES `author` (`author_id`),

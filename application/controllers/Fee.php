@@ -15,10 +15,14 @@
         }   
         
         public function index(){
-           //$this->add_member ();       
+        	if(!$this->session->userdata('is_logged'))
+        		redirect('/');
+        	$this->addFee();
         }
 
         public function addFee(){
+        	if(!$this->session->userdata('is_logged'))
+        		redirect('/');
             if(isset($_POST['submitFee'])){
                 $this->load->library("form_validation");
                 $this->form_validation->set_rules('memberType','Member Type','required');
@@ -82,6 +86,8 @@
         }
 
         public function viewActiveFee(){
+        	if(!$this->session->userdata('is_logged'))
+        		redirect('/');
             $this->load->library('pagination');
             $this->load->library('table');
             $config['base_url'] = PATH."fee/viewActiveFee";
@@ -96,6 +102,8 @@
         }
 
         public function viewDeadFee(){
+        	if(!$this->session->userdata('is_logged'))
+        		redirect('/');
             $this->load->library('pagination');
             $this->load->library('table');
             $config['base_url'] = PATH."fee/viewDeadFee";

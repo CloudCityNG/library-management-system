@@ -107,7 +107,7 @@
 				}
 			} else{
 				if($this->session->userdata('is_logged')){
-					//user is already logged in, show homepage
+					redirect('member');
 				} else{
 					$this->load->view('auth/register');
 				}

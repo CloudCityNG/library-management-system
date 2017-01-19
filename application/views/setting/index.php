@@ -51,7 +51,7 @@
     <div class="container-fluid" id="edit_tabulated" style="display: none;">
         <div class="row">
             <div class="col-sm-12">
-                <form action="<?php echo URL.'index.php/setting/edit'; ?>" method="post" role="form">
+                <form action="<?php echo PATH.'setting/edit'; ?>" method="post" role="form">
                     <?php
                     $temp = '';
                     foreach ($settings->result() as $row){
@@ -81,6 +81,37 @@
                 </form>
             </div>
         </div>
+    </div>
+    
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="col-md-6 col-sm-6 col-xs-12">
+    			<form action="<?php echo PATH.'setting/addCollege'?>" method="post" role="form">
+					<div class="form-group">
+						<label for="college_name">College name</label>
+						<input type="text" class="form-control" id="college_name" name="college_name" placeholder="eg. VESIT" required/>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-success btn-block btn-outline" id="add_college" name="add_college" type="submit">
+							Add College
+						</button>
+					</div>
+    			</form>
+    		</div>
+    		<div class="col-md-6 col-sm-6 col-xs-12">
+    			<form action="<?php echo PATH.'setting/addUniversity'?>" method="post" role="form">
+    				<div class="form-group">
+						<label for="university_name">University name</label>
+						<input type="text" class="form-control" id="university_name" name="university_name" placeholder="eg. Mumbai University"/>    				
+    				</div>
+    				<div class="form-group">
+    					<button class="btn btn-block btn-success" id="add_university" name="add_university" type="submit">
+							Add University    					
+    					</button>
+    				</div>
+    			</form>
+    		</div>
+    	</div>
     </div>
 
 </div>
