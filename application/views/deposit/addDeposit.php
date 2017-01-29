@@ -24,7 +24,7 @@
 
 						<div class="form-group col-md-3 col-sm-6 col-xs-12">
 							<label for="amount"><h5>Amount *</h5></label>
-							<input class="form-control" type="text" name="amount" id="amount" disabled placeholder="Enter the amount" value="<?php echo $deposit; ?>" />
+							<input class="form-control" type="text" name="amount" id="amount" readonly placeholder="Enter the amount" value="<?php echo $deposit; ?>" />
 						</div>
 
 						<div class="form-group col-md-3 col-sm-6 col-xs-12">

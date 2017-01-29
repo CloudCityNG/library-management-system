@@ -16,7 +16,7 @@
 
 <script>
 $(document).ready(function(){
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
 });
 $('.select-plugin').selectize({
     create: false,

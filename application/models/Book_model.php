@@ -25,16 +25,16 @@ class book_model extends CI_Model {
 
 	public function get_topic(){
 		$query = "SELECT * FROM topic";
-		$branch = $this->db->query($query);
-		if($branch){
-			return $branch;
+		$topic = $this->db->query($query);
+		if($topic){
+			return $topic;
 		}
 	}
 	public function get_author(){
 		$query = "SELECT * FROM author";
-		$branch = $this->db->query($query);
-		if($branch){
-			return $branch;
+		$author = $this->db->query($query);
+		if($author){
+			return $author;
 		}
 	}
 
@@ -43,6 +43,7 @@ class book_model extends CI_Model {
 		$topic = $this->db->query($query);
 		//echo $this->db->last_query();
 		if($topic){
+			echo "<option value='0'>Select a value</option>";
 			foreach($topic->result_array() as $top){
 				extract($top);
 				echo "<option value='".$topic_id."'>".$topic_name."</option>";
@@ -54,6 +55,7 @@ class book_model extends CI_Model {
 		$query = "SELECT * FROM author WHERE topic_id='$data'";
 		$author = $this->db->query($query);
 		if($author){
+			echo "<option value='0'>Select a value</option>";
 			foreach($author->result_array() as $auth){
 				extract($auth);
 				echo "<option value='".$author_id."'>".$author_name."</option>";

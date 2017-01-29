@@ -31,18 +31,18 @@ defined('FILE_WRITE_MODE') OR define('FILE_WRITE_MODE', 0666);
 defined('DIR_READ_MODE')   OR define('DIR_READ_MODE', 0755);
 defined('DIR_WRITE_MODE')  OR define('DIR_WRITE_MODE', 0755);
 
-// define('PATH', 'http://lms.dev/index.php/');
-// define('URL', 'http://lms.dev/');
-// define('CSS', 'http://lms.dev/assets/css/');
-// define('JS',  'http://lms.dev/assets/js/');
-// define('IMAGES',  'http://lms.dev/assets/images/');
-// define('ASSET',  'http://lms.dev/assets/');
-define('PATH', 'http://vsm-lms.thadaninilesh.epizy.com/index.php/');
-define('URL', 'http://vsm-lms.thadaninilesh.epizy.com/');
-define('CSS', 'http://vsm-lms.thadaninilesh.epizy.com/assets/css/');
-define('JS',  'http://vsm-lms.thadaninilesh.epizy.com/assets/js/');
-define('IMAGES',  'http://vsm-lms.thadaninilesh.epizy.com/assets/images/');
-define('ASSET',  'http://vsm-lms.thadaninilesh.epizy.com/assets/');
+define('PATH', 'http://lms.dev/index.php/');
+define('URL', 'http://lms.dev/');
+define('CSS', 'http://lms.dev/assets/css/');
+define('JS',  'http://lms.dev/assets/js/');
+define('IMAGES',  'http://lms.dev/assets/images/');
+define('ASSET',  'http://lms.dev/assets/');
+// define('PATH', 'http://vsm-lms.thadaninilesh.epizy.com/index.php/');
+// define('URL', 'http://vsm-lms.thadaninilesh.epizy.com/');
+// define('CSS', 'http://vsm-lms.thadaninilesh.epizy.com/assets/css/');
+// define('JS',  'http://vsm-lms.thadaninilesh.epizy.com/assets/js/');
+// define('IMAGES',  'http://vsm-lms.thadaninilesh.epizy.com/assets/images/');
+// define('ASSET',  'http://vsm-lms.thadaninilesh.epizy.com/assets/');
 
 /*
 |--------------------------------------------------------------------------

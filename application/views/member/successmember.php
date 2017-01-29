@@ -52,7 +52,7 @@
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form method="POST" action="http://localhost/lms/index.php/deposit/addDeposit">
+      <form method="POST" action="<?php echo PATH; ?>deposit/addDeposit">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h3 class="modal-title" id="myModalLabel">Enter Deposit Information</h3>

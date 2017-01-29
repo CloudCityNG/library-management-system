@@ -30,6 +30,7 @@ class searchdatabase_control extends CI_Controller{
     	$data['bloodGroup'] = $this->member_model->bloodGroup();
     	$data['status'] = $this->member_model->status();
         $this->load->view('template/header');
+        $this->load->view('template/msg');
         $this->load->view('template/searchdatabase',$data);
         $this->load->view('template/footer');
     }
@@ -119,7 +120,11 @@ class searchdatabase_control extends CI_Controller{
                 $type = $_POST['type'];
 				$current_year = $_POST['current_year'];
                 $branch = $_POST['branch'];
-
+				if(empty($member_id) && empty($name) && empty($gender) && empty($contact) && empty($email) && empty($address_city) && empty($college) && empty($blood_group) 
+						&& empty($university) && empty($status) && empty($type) && empty($current_year) && empty($branch)){
+					$this->session->set_userdata('error',"No search filters were used");
+					redirect('/searchdatabase_control');
+				}
                 $data = array(
                     'wmember_id' => $member_id,
                     'wname' => $name,

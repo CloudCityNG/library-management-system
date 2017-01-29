@@ -14,9 +14,10 @@
 			var branch=$("#branch").val();
 			$.ajax({
 				type:"post",
-				url:"http://lms.dev/index.php/book/get_topic",
+				url:"<?php echo PATH; ?>book/get_topic",
 				data:"branch="+branch,
 				success:function(data){
+					console.log(data);
 					$("#topic").html(data);
 				}
 			});
@@ -29,9 +30,10 @@
 			var topic=$("#topic").val();
 			$.ajax({
 				type:"post",
-				url:"http://lms.dev/index.php/book/get_author",
+				url:"<?php echo PATH; ?>book/get_author",
 				data:"topic="+topic,
 				success:function(data){
+					console.log(data);
 					$("#author").html(data);
 				}
 			});
@@ -163,7 +165,7 @@ else{
 
 		<div class="col-sm-6">
 			<?php echo form_label('<h5>Purchase Date:-</h5>','date'); ?>
-			<input type="date" name="date" id="date" class="form-control">
+			<input type="text" name="date" id="date" class="form-control datepicker" placeholder="Please select a date">
 		</div>
 	</div>
 

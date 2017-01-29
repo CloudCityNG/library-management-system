@@ -30,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/"><h3>VSM:Library Management System</h3></a>
+                <a href="<?php echo PATH; ?>"><h3>VSM:Library Management System</h3></a>
             </div>
             <!-- /.navbar-header -->
 <!--Search By ID-->

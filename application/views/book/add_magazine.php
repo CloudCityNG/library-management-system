@@ -125,7 +125,7 @@ else{
 		<div class="col-sm-6">
 			<?php echo form_label('<h5>Purchase Date:</h5>','date'); ?>
 
-			<input type="date" name="date" id="datepicker" class="form-control">
+			<input type="text" name="date" id="datepicker" class="form-control datepicker" placeholder="Please select a date">
 		</div>
 	</div>
 

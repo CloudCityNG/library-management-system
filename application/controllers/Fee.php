@@ -81,7 +81,6 @@
         }
 
         public function getNewList(){
-            $new=$_POST['type'];
             $data['member'] = $this->fee_model->newMembers();
         }
 

@@ -9,7 +9,7 @@
 		'name' => 'newbranch',
 		'id' => 'newbranch',
 		'placeholder' => 'Enter Branch',
-		"maxlength" => "15",
+		"maxlength" => "50",
 		"class" => "form-control element-width-3",
 		"title" => "New Branch",
 		"autocomplete" => "off"

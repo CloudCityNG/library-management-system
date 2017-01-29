@@ -4,10 +4,11 @@
 	$(document).ready(function(){
 		$("#memberType").change(function(){
 			var type=$("#memberType").val();
+			console.log(type);
 			if(type=='expired'){
 				$.ajax({
 					type:"post",
-					url:"http://lms.dev/index.php/fee/getExpiredList",
+					url:"<?php echo PATH; ?>fee/getExpiredList",
 					data:"type="+type,
 					success:function(data){
 						$("#dueList").html(data);
@@ -17,7 +18,7 @@
 			else if(type=='new'){
 				$.ajax({
 					type:"post",
-					url:"http://lms.dev/index.php/fee/getNewList",
+					url:"<?php echo PATH; ?>fee/getNewList",
 					data:"type="+type,
 					success:function(data){
 						$("#dueList").html(data);
@@ -38,7 +39,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-			<form action="<?php echo URL.'index.php/fee/addFee'; ?>" method="POST" role="form">
+			<form action="<?php echo PATH.'fee/addFee'; ?>" method="POST" role="form">
 				<div class="row">
 					<div class="col-md-4 col-xs-12">
 						<div class="form-group">

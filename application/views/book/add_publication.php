@@ -9,7 +9,7 @@
 		'name' => 'newpublication',
 		'id' => 'newpublication',
 		'placeholder' => 'Enter Publication',
-		"maxlength" => "15",
+		"maxlength" => "50",
 		"class" => "form-control element-width-3",
 		"title" => "New Publication",
 		"autocomplete" => "off"

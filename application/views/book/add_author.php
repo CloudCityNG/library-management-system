@@ -9,7 +9,7 @@
 		'name' => 'newauthor',
 		'id' => 'newauthor',
 		'placeholder' => 'Enter Author',
-		"maxlength" => "15",
+		"maxlength" => "50",
 		"class" => "form-control element-width-3",
 		"title" => "New Author",
 		"autocomplete" => "off"

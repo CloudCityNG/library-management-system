@@ -9,7 +9,7 @@
 		'name' => 'newtopic',
 		'id' => 'newtopic',
 		'placeholder' => 'Enter Topic',
-		"maxlength" => "15",
+		"maxlength" => "50",
 		"class" => "form-control element-width-3",
 		"title" => "New Topic",
 		"autocomplete" => "off"

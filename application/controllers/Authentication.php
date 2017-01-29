@@ -18,6 +18,9 @@
 			 * if logged in, redirect to homepage
 			 * else show login view
 			 */
+			if($this->session->userdata('is_logged')){
+				redirect('member');
+			}
 			$this->load->library('form_validation');
 			if(isset($_POST['login'])){
 				$this->form_validation->set_rules('username', 'Username', 'required');
@@ -69,6 +72,9 @@
 			 * show register page if not submit
 			 * else register user
 			 */
+			if($this->session->userdata('is_logged')){
+				redirect('member');
+			}
 			$this->load->library("form_validation");
 			if(isset($_POST['register'])){
 				$this->form_validation->set_rules('name','Name','required|trim');

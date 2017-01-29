@@ -25,13 +25,24 @@ if (!defined('BASEPATH'))
 		public function newMembers(){
 			$sql = "SELECT m.member_id,m.first_name,m.middle_name,m.last_name,m.date_of_joining FROM member m INNER JOIN fee f ON m.member_id != f.member_id WHERE m.status='1'";
 			$query = $this->db->query($sql);
+			$contains = false;
 			if($query->num_rows()>0){
+				$contains = true;
 				foreach($query->result_array() as $top){
-				extract($top);
-				echo "<option value='".$member_id."'>".$first_name."</option>";
+					extract($top);
+					echo "<option value='".$member_id."'>".$first_name." ".$last_name."</option>";
+				}
 			}
+			$sql = "SELECT m.member_id,m.first_name,m.middle_name,m.last_name,m.date_of_joining FROM member m WHERE m.member_id NOT IN(SELECT f.member_id FROM fee f) AND m.status='1'";
+			$query = $this->db->query($sql);
+			if($query->num_rows()>0){
+				$contains = true;
+				foreach($query->result_array() as $top){
+					extract($top);
+					echo "<option value='".$member_id."'>".$first_name." ".$last_name."</option>";
+				}
 			}
-			else{
+			if(!$contains){
 				echo "<option disabled>No new Member :(</option>";
 			}
 		}
